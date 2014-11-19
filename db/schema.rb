@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118042720) do
+ActiveRecord::Schema.define(version: 20141119013645) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141118042720) do
     t.string   "attachment_3"
     t.string   "attachment_4"
     t.string   "attachment_5"
+    t.string   "name"
   end
 
   add_index "incidents", ["company_id"], name: "index_incidents_on_company_id"
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20141118042720) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "state_id"
   end
 
   create_table "outcomes", force: true do |t|
@@ -73,8 +75,6 @@ ActiveRecord::Schema.define(version: 20141118042720) do
   end
 
   create_table "people", force: true do |t|
-    t.string   "name"
-    t.string   "fist_name"
     t.string   "street"
     t.string   "email"
     t.string   "phone_number"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20141118042720) do
     t.integer  "state_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "states", force: true do |t|
@@ -92,5 +93,16 @@ ActiveRecord::Schema.define(version: 20141118042720) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

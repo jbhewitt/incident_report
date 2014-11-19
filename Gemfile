@@ -7,7 +7,8 @@ gem 'rails', '4.1.7'
 
 
 gem 'pg'
-gem 'papertrail'
+gem 'roo'
+gem 'paper_trail', '~> 3.0.6'
 gem 'carrierwave'
 gem 'rails_admin'
 
